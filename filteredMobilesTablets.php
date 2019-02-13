@@ -1,10 +1,14 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Filtered Mobiles and Tablets</title>
     <link rel="stylesheet" type="text/css" media="screen" href="one.css" />
 </head>
 <body>
@@ -18,6 +22,10 @@
         $conn = pg_connect( "$host $port $dbname $credentials"  );
         if(!$conn) {
         echo "Error : Unable to open database\n";
+        }
+
+        function addToProducts($prdct_id) {
+            echo "The Product id is $prdct_id";
         }
 
         if(isset($_POST['brand'])) {
@@ -47,105 +55,105 @@
         
 
         if($brand != NULL and $ram != NULL and $rom != NULL and $colour != NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and rom = $rom and company_name = '$brand' and colour = '$colour'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and rom = $rom and company_name = '$brand' and colour = '$colour'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand != NULL and $ram != NULL and $rom != NULL and $colour == NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and rom = $rom and company_name = '$brand'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and rom = $rom and company_name = '$brand'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand != NULL and $ram != NULL and $rom == NULL and $colour != NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and company_name = '$brand' and colour = '$colour'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and company_name = '$brand' and colour = '$colour'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand != NULL and $ram != NULL and $rom == NULL and $colour == NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and company_name = '$brand'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and company_name = '$brand'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand != NULL and $ram == NULL and $rom != NULL and $colour != NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and rom = $rom and company_name = '$brand' and colour = '$colour'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and rom = $rom and company_name = '$brand' and colour = '$colour'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand != NULL and $ram == NULL and $rom != NULL and $colour == NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and rom = $rom and company_name = '$brand'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and rom = $rom and company_name = '$brand'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand != NULL and $ram == NULL and $rom == NULL and $colour != NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and company_name = '$brand' and colour = '$colour'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and company_name = '$brand' and colour = '$colour'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand != NULL and $ram == NULL and $rom == NULL and $colour == NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and company_name = '$brand'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and company_name = '$brand'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand == NULL and $ram != NULL and $rom != NULL and $colour != NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and rom = $rom and colour = '$colour'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and rom = $rom and colour = '$colour'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand == NULL and $ram != NULL and $rom != NULL and $colour == NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and rom = $rom");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and rom = $rom");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand == NULL and $ram != NULL and $rom == NULL and $colour != NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and colour = '$colour'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram and colour = '$colour'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand == NULL and $ram != NULL and $rom == NULL and $colour == NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and ram = $ram");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand == NULL and $ram == NULL and $rom != NULL and $colour != NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and rom = $rom and colour = '$colour'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and rom = $rom and colour = '$colour'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand == NULL and $ram == NULL and $rom != NULL and $colour == NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and rom = $rom");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and rom = $rom");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
             }
         }
         else if($brand == NULL and $ram == NULL and $rom == NULL and $colour != NULL) {
-            $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and colour = '$colour'");
+            $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo, ram, rom, processor_type, os, gpu from mobile_tablet_view where category_id = 1 and colour = '$colour'");
             if (!$result) {
                 echo "An error occurred.\n";
                 exit;
@@ -179,14 +187,13 @@
         echo "<th>Processor Type</th>";
         echo "<th>OS</th>";
         echo "<th>GPU</th>";
-        
+        echo "<th>Buy</th>";
         
         echo "</tr></thead><tbody>";
         
         //echo "<br />\ncustomer_id  location_id  first_name  last_name";
         while ($row = pg_fetch_row($result)) {
           echo "<tr>";
-          echo "<td>$row[0]</td>";
           echo "<td>$row[1]</td>";
           echo "<td>$row[2]</td>";
           echo "<td>$row[3]</td>";
@@ -202,7 +209,9 @@
           echo "<td>$row[13]</td>";
           echo "<td>$row[14]</td>";
           echo "<td>$row[15]</td>";
+          echo "<td>$row[16]</td>";
           
+          echo "<td><form action='#' method='post'> <button type='submit' name='sub' value=$row[0]>Add To Cart</button> </form></td>";
           
           echo "</tr>";
           //echo "<p>$row[0]     $row[1]       $row[2]       $row[3]</p>";
@@ -213,6 +222,21 @@
         echo "<br>";
         echo "<br>";
         
+    ?>
+
+    <?php
+      if(isset($_POST['sub'])) {
+        echo $_POST['sub'];
+        $cid = $_SESSION['customer_id'];
+        $pid = $_POST['sub'];
+        $qry = pg_query($conn, "insert into cart(customer_id, product_id) VALUES ($cid, $pid)");
+        if (!$qry) {
+          echo "An error occurred.\n";
+          exit;
+        }
+        header("Location:http://localhost:4000/www/cart.php");
+        exit();
+      }
     ?>
 </body>
 </html>

@@ -115,8 +115,6 @@ session_start();
       }
     ?>
 
-    
-
     <div class="filter">
         <form action="http://localhost:4000/www/filteredMobilesTablets.php" method="post">
             <p>Filter By Brand</p>

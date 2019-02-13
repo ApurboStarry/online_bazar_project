@@ -211,7 +211,9 @@ session_start();
           echo "<td>$row[14]</td>";
           echo "<td>$row[15]</td>";
           echo "<td>$row[16]</td>";
-          
+
+          echo "<td><form action='#' method='post'> <button type='submit' name='sub' value=$row[0]>Add To Cart</button> </form></td>";
+
           echo "</tr>";
           //echo "<p>$row[0]     $row[1]       $row[2]       $row[3]</p>";
           //echo "<br />\n";
@@ -220,9 +222,22 @@ session_start();
         echo "</table>";
         echo "<br>";
         echo "<br>";
+        
+    ?>
 
-        
-        
+    <?php
+      if(isset($_POST['sub'])) {
+        echo $_POST['sub'];
+        $cid = $_SESSION['customer_id'];
+        $pid = $_POST['sub'];
+        $qry = pg_query($conn, "insert into cart(customer_id, product_id) VALUES ($cid, $pid)");
+        if (!$qry) {
+          echo "An error occurred.\n";
+          exit;
+        }
+        header("Location:http://localhost:4000/www/cart.php");
+        exit();
+      }
     ?>
 
 </body>

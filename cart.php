@@ -23,7 +23,7 @@ session_start();
            echo "Error : Unable to open database\n";
         }
         $cid = $_SESSION['customer_id'];
-        $result = pg_query($conn, "select product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo from products where product_id in (select product_id from cart where customer_id = $cid)");
+        $result = pg_query($conn, "select product_id, product_name, description, stock_quantity, price, discount, average_rating, no_of_reviews, company_name, colour, warranty, photo from products where product_id in (select product_id from cart where customer_id = $cid)");
         if (!$result) {
           echo "An error occurred.\n";
           exit;
@@ -51,13 +51,13 @@ session_start();
         echo "<th>Colour</th>";
         echo "<th>Warranty</th>";
         echo "<th>Photo</th>";
+        echo "<th>Buy</th>";
         
         echo "</tr></thead><tbody>";
         
         //echo "<br />\ncustomer_id  location_id  first_name  last_name";
         while ($row = pg_fetch_row($result)) {
           echo "<tr>";
-          echo "<td>$row[0]</td>";
           echo "<td>$row[1]</td>";
           echo "<td>$row[2]</td>";
           echo "<td>$row[3]</td>";
@@ -68,6 +68,9 @@ session_start();
           echo "<td>$row[8]</td>";
           echo "<td>$row[9]</td>";
           echo "<td>$row[10]</td>";
+          echo "<td>$row[11]</td>";
+
+          echo "<td><form action='#' method='post'> <button type='submit' name='sub' value=$row[0]>Buy</button> </form></td>";
           
           echo "</tr>";
           //echo "<p>$row[0]     $row[1]       $row[2]       $row[3]</p>";
@@ -78,5 +81,16 @@ session_start();
         echo "<br>";
         echo "<br>";
     ?>
+
+    <?php
+      if(isset($_POST['sub'])) {
+        echo $_POST['sub'];
+        $cid = $_SESSION['customer_id'];
+        $_SESSION['product_id'] = $_POST['sub'];
+        header("Location:http://localhost:4000/www/buy.php");
+        exit();
+      }
+    ?>
+
 </body>
 </html>
