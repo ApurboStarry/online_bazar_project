@@ -40,13 +40,15 @@ session_start();
             $category_id = $row[0];
             echo $category_id;
 
-            $_SESSION["category_id"] = $category_id;
+            $_SESSION["product_id"] = $product_id;
+
 
             if($category_id == NULL) {
                 echo "<br>";
                 echo "ERROR!!!!No such Product!!!";
             }else if($category_id == 1 or $category_id == 2) {
-
+                header("Location:http://localhost:4000/www/updateMobileTablet.php");
+                exit();
             }else if ($category_id == 3 or $category_id == 4 or $category_id == 5 or $category_id == 6 or $category_id == 7) {
 
             }else if ($category_id == 14 or $category_id == 16 or $category_id == 17) {
@@ -56,7 +58,7 @@ session_start();
             }else if($category_id >= 31 and $category_id <= 37) {
 
             }else {
-                
+
             }
         }
     ?>

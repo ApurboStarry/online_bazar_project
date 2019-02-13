@@ -22,11 +22,13 @@
                 header("Location:http://localhost:4000/www/iAmAnAdmin.php");
                 exit();
             }
-            else if($choice == "update")
-                echo "update";
+            else if($choice == "update") {
+                header("Location:http://localhost:4000/www/updateAsAdmin.php");
+                exit();
+            }
             else if($choice == "delete")
                 echo "delete";
-        
+                
             
         }
     ?>

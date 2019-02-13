@@ -26,9 +26,7 @@ session_start();
         <input type="radio" name="entity" value="rom">ROM <br>
         <input type="radio" name="entity" value="processor_type">Processor Type <br>
         <input type="radio" name="entity" value="os">OS <br>
-        <input type="radio" name="entity" value="gpu">GPU <br>
-        <input type="radio" name="entity" value="description">Description <br>
-        <input type="radio" name="entity" value="description">Description <br> <br> <br>
+        <input type="radio" name="entity" value="gpu">GPU <br> <br>
 
         <h1>Write down associated change in the entity</h1> <br>
         <input type="text" name="updateValue">
@@ -43,6 +41,9 @@ session_start();
             echo $entity;
             echo "<br>";
             echo $updatedValue;
+            echo "<br>";
+            echo $_SESSION['product_id'];
+            $product_id = $_SESSION['product_id'];
 
             $host        = "host = 127.0.0.1";
             $port        = "port = 5432";
@@ -53,12 +54,39 @@ session_start();
             if(!$conn) {
             echo "Error : Unable to open database\n";
             }
-            //top deals
-            $result = pg_query($conn, "select * from top_deals()");
-            if (!$result) {
-            echo "An error occurred.\n";
-            exit;
+            
+            if($entity == "product_name" or $entity == "description" or $entity == "stock_quantity" or $entity == "price" or $entity == "discount" or $entity == "company_name" or $entity == "colour" or $entity == "warranty" or $entity == "photo") {
+                if(gettype($updatedValue) == 'integer'){
+                    $result = pg_query($conn, "update products set $entity=$updatedValue where product_id = $product_id");
+                    if (!$result) {
+                    echo "An error occurred.\n";
+                    exit;
+                    }
+                }else {
+                    $result = pg_query($conn, "update products set $entity='$updatedValue' where product_id = $product_id");
+                    if (!$result) {
+                    echo "An error occurred.\n";
+                    exit;
+                    }
+                }
+                
+            }else {
+                if(gettype($updatedValue) == 'integer'){
+                    $result = pg_query($conn, "update mobile_and_tablet set $entity=$updatedValue where product_id = $product_id");
+                    if (!$result) {
+                    echo "An error occurred.\n";
+                    exit;
+                    }
+                }else {
+                    $result = pg_query($conn, "update mobile_and_tablet set $entity='$updatedValue' where product_id = $product_id");
+                    if (!$result) {
+                    echo "An error occurred.\n";
+                    exit;
+                    }
+                }
             }
+            
+            
         }    
 
     ?>
