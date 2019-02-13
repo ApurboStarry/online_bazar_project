@@ -9,6 +9,10 @@ session_start();
     <title>Document</title>
 </head>
 <body>
+    <br>
+    <button> <a href="http://localhost:4000/www/dropDown.php" >Home Page</a> </button>
+    <br>
+    <br>
     <form action="#" method="post">
         Product ID : <input type="text" name="pid"> <br> <br>
         <input type="submit" name="submit">
@@ -50,15 +54,20 @@ session_start();
                 header("Location:http://localhost:4000/www/updateMobileTablet.php");
                 exit();
             }else if ($category_id == 3 or $category_id == 4 or $category_id == 5 or $category_id == 6 or $category_id == 7) {
-
+                header("Location:http://localhost:4000/www/updateLaptopDesktop.php");
+                exit();
             }else if ($category_id == 14 or $category_id == 16 or $category_id == 17) {
-
+                header("Location:http://localhost:4000/www/updateTV.php");
+                exit();
             }else if($category_id == 18 or $category_id == 19) {
-
+                header("Location:http://localhost:4000/www/updateRefrigerator.php");
+                exit();
             }else if($category_id >= 31 and $category_id <= 37) {
-
+                header("Location:http://localhost:4000/www/updateBook.php");
+                exit();
             }else {
-
+                header("Location:http://localhost:4000/www/updateProduct.php");
+                exit();
             }
         }
     ?>

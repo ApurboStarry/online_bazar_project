@@ -5,9 +5,13 @@
     <title>Document</title>
 </head>
 <body>
+    <br>
+    <button> <a href="http://localhost:4000/www/dropDown.php" >Home Page</a> </button>
+    <br>
+    <br>
     <form action="#" method="post">
-        UserName<input type="text" name="uName" placeholder="username"> <br> <br>
-        Password<input type="password" name="pass" placeholder="password"> <br> <br>
+        UserName <input type="text" name="uName" placeholder="username"> <br> <br>
+        Password <input type="password" name="pass" placeholder="password"> <br> <br>
         <input type="submit" name="submit" value="Login"/>
     </form>
 

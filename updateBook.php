@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Update Mobile or Tablet</title>
+    <title>Update Book</title>
 </head>
 <body>
     <br>
@@ -25,11 +25,11 @@ session_start();
         <input type="radio" name="entity" value="colour">Colour <br>
         <input type="radio" name="entity" value="warranty">Warranty <br>
         <input type="radio" name="entity" value="photo">Photo <br>
-        <input type="radio" name="entity" value="ram">RAM <br>
-        <input type="radio" name="entity" value="rom">ROM <br>
-        <input type="radio" name="entity" value="processor_type">Processor Type <br>
-        <input type="radio" name="entity" value="os">OS <br>
-        <input type="radio" name="entity" value="gpu">GPU <br> <br>
+        <input type="radio" name="entity" value="genre">Genre <br>
+        <input type="radio" name="entity" value="author">Author <br>
+        <input type="radio" name="entity" value="_language">Language <br>
+        <input type="radio" name="entity" value="_format">Format <br>
+        
 
         <h1>Write down associated change in the entity</h1> <br>
         <input type="text" name="updateValue">
@@ -75,13 +75,13 @@ session_start();
                 
             }else {
                 if(gettype($updatedValue) == 'integer'){
-                    $result = pg_query($conn, "update mobile_and_tablet set $entity=$updatedValue where product_id = $product_id");
+                    $result = pg_query($conn, "update book set $entity=$updatedValue where product_id = $product_id");
                     if (!$result) {
                     echo "An error occurred.\n";
                     exit;
                     }
                 }else {
-                    $result = pg_query($conn, "update mobile_and_tablet set $entity='$updatedValue' where product_id = $product_id");
+                    $result = pg_query($conn, "update book set $entity='$updatedValue' where product_id = $product_id");
                     if (!$result) {
                     echo "An error occurred.\n";
                     exit;

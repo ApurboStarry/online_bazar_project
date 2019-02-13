@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <br>
+    <button> <a href="http://localhost:4000/www/dropDown.php" >Home Page</a> </button>
+    <br>
+    <br>
     <form action="#" method="post">
         <h1>Select Your Choice</h1>
         <input type="radio" name="choice" value="insert" >Insert
@@ -26,8 +30,10 @@
                 header("Location:http://localhost:4000/www/updateAsAdmin.php");
                 exit();
             }
-            else if($choice == "delete")
-                echo "delete";
+            else if($choice == "delete") {
+                header("Location:http://localhost:4000/www/deleteAsAdmin.php");
+                exit();
+            }
                 
             
         }

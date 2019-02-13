@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Update Mobile or Tablet</title>
+    <title>Update Refrigerator</title>
 </head>
 <body>
     <br>
@@ -25,11 +25,14 @@ session_start();
         <input type="radio" name="entity" value="colour">Colour <br>
         <input type="radio" name="entity" value="warranty">Warranty <br>
         <input type="radio" name="entity" value="photo">Photo <br>
-        <input type="radio" name="entity" value="ram">RAM <br>
-        <input type="radio" name="entity" value="rom">ROM <br>
-        <input type="radio" name="entity" value="processor_type">Processor Type <br>
-        <input type="radio" name="entity" value="os">OS <br>
-        <input type="radio" name="entity" value="gpu">GPU <br> <br>
+        <input type="radio" name="entity" value="door_style">Door Style <br>
+        <input type="radio" name="entity" value="capacity">Capacity <br>
+        <input type="radio" name="entity" value="energy_star_rating">Energy Star Rating <br>
+        <input type="radio" name="entity" value="features">Features <br>
+        <input type="radio" name="entity" value="defrost_system">Defrost System <br>
+        <input type="radio" name="entity" value="door_pattern">Door Pattern <br>
+        <input type="radio" name="entity" value="shelf_type">Shelf Type <br>
+        
 
         <h1>Write down associated change in the entity</h1> <br>
         <input type="text" name="updateValue">
@@ -75,13 +78,13 @@ session_start();
                 
             }else {
                 if(gettype($updatedValue) == 'integer'){
-                    $result = pg_query($conn, "update mobile_and_tablet set $entity=$updatedValue where product_id = $product_id");
+                    $result = pg_query($conn, "update refrigerator set $entity=$updatedValue where product_id = $product_id");
                     if (!$result) {
                     echo "An error occurred.\n";
                     exit;
                     }
                 }else {
-                    $result = pg_query($conn, "update mobile_and_tablet set $entity='$updatedValue' where product_id = $product_id");
+                    $result = pg_query($conn, "update refrigerator set $entity='$updatedValue' where product_id = $product_id");
                     if (!$result) {
                     echo "An error occurred.\n";
                     exit;
